@@ -1,60 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Matching Game!</title>
-  <style media="screen">
-  img{
-    position:absolute;
-  }
-  div{
-    position:absolute;
-    width:500px; height:500px
-  }
-  #rightSide{
-    left: 500px;
-    border-left: 1px solid black;
-  }
-  </style>
-</head>
-<body onload="generateFaces()">
-  <h1>Matching Game</h1>
-  <p>Click on the extra smiling face on the left</p>
-  <div id="leftSide"></div>
-  <div id="rightSide"></div>
-  <script type="text/javascript">
-    var numberOfFaces = 5;
-    var theLeftSide = document.getElementById("leftSide");
-    var theRightSide = document.getElementById("rightSide");
-    var theBody = document.getElementsByTagName("body")[0];
-    function generateFaces(){
-      for(var i=0;i<numberOfFaces;i++){
-
-        face = document.createElement("img");
-        face.style.top = Math.floor(Math.random()*401)+"px";
-        face.style.left = Math.floor(Math.random()*401)+"px";
-        face.src="https://home.cse.ust.hk/~rossiter/mooc/matching_game/smile.png";
-        theLeftSide.appendChild(face);
-      }
-      leftSideImages = theLeftSide.cloneNode(true);
-      leftSideImages.removeChild(leftSideImages.lastChild);
-      theRightSide.appendChild(leftSideImages);
-      theLeftSide.lastChild.onclick = function newLevel(event){
-        event.stopPropagation();
-        numberOfFaces += 5;
-        while(theLeftSide.firstChild){
-          theLeftSide.removeChild(theLeftSide.firstChild);
-        }
-        while(theRightSide.firstChild){
-          theRightSide.removeChild(theRightSide.firstChild);
-        }
-        generateFaces();
-      };
-      theBody.onclick = function gameOver() {
-        alert("Game Over! That's not the extra face! \n\n Refresh the page to play again!");
-        theBody.onclick = null;
-        theLeftSide.lastChild.onclick = null;};
-    }
-  </script>
-</body>
+<html>
+<title="Seeking Space - Login"/>
+    <head>
+        <link rel="icon"
+        type="image/x-icon"
+        href="Upload/favicon.ico"/>
+    </head>
+    <header>
+        <style media="screen">
+            .letter {font-family: "Verdana"; color: #00e600; font-size: 17}
+            .tittle {font-family: "Verdana"; color: white; font-size: 22}
+            form {border-width: 0px; margin: 0px; text-align: left}
+            fieldset {background-color: black; border-width: 0px;
+                margin-bottom: 5px; border-style: solid}
+            label {display: inline-block;}
+            .topper {border-width: 2px; border-color: white}
+            legend {font-family: "verdana"; color: white; font-size: 12}
+            body {background-color: black}
+        </style>
+    </header>
+    <body>
+            <fieldset class="topper">
+                <img src="SeeSpa-Logo.png" alt="" width="150"/>
+                <p class="tittle"><b>Seeking Space</b></p>
+            </fieldset>
+            <fieldset>
+                <label class="letter">Welcome to Seeking Space!</label>
+            </fieldset>
+        <form action="" method="post"><!--Missing PHP Target-->
+            <!--Sign In-->
+            <fieldset class="topper"; align=right>
+                <label class="letter">Enter your email, your empire awaits:</label>
+                <input id="oldEmail"; type="text"; required><br>
+                <label class="letter">Enter password, your empire is safe:</label>
+                <input id="oldPassword"; type="text"; required>
+                <legend>Sign In</legend>
+                <input type="submit" value="Sign In">
+            </fieldset>
+        </form>
+        <form action="" method="post"><!--Missing PHP Target-->
+            <!--Register-->
+            <fieldset class="topper"; align=left>
+                <label class="letter">New around here? Register!</label><br>
+                <label class="letter">Your favourite Nickname:</label>
+                <input id="newUsername"; type="text"; required><br>
+                <label class="letter">Your email is the key:</label>
+                <input id="newEmail"; type="text"; required><br>
+                <label class="letter">Password. It must be secret:</label>
+                <input id="newPassword"; type="text"; required>
+                <legend>Register</legend>
+                <input type="submit" value="Register">
+            </fieldset>
+        </form>
+    </body>
 </html>
