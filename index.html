@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<title="Seeking Space - Login"/>
+    <head>
+        <link rel="icon"
+        type="image/x-icon"
+        href="Upload/favicon.ico"/>
+    </head>
+    <header>
+        <style media="screen">
+            .letter {font-family: "Verdana"; color: #00e600; font-size: 17}
+            .tittle {font-family: "Verdana"; color: white; font-size: 22}
+            form {border-width: 0px; margin: 0px; text-align: left}
+            fieldset {background-color: black; border-width: 0px;
+                margin-bottom: 5px; border-style: solid}
+            label {display: inline-block;}
+            .topper {border-width: 2px; border-color: white}
+            legend {font-family: "verdana"; color: white; font-size: 12}
+            body {background-color: black}
+        </style>
+    </header>
+    <body>
+            <fieldset class="topper">
+                <img src="SeeSpa-Logo.png" alt="" width="150"/>
+                <p class="tittle"><b>Seeking Space</b></p>
+            </fieldset>
+            <fieldset>
+                <label class="letter">Welcome to Seeking Space!</label>
+            </fieldset>
+        <form action="" method="post"><!--Missing PHP Target-->
+            <!--Sign In-->
+            <fieldset class="topper"; align=right>
+                <label class="letter">Enter your email, your empire awaits:</label>
+                <input id="oldEmail"; type="text"; required><br>
+                <label class="letter">Enter password, your empire is safe:</label>
+                <input id="oldPassword"; type="text"; required>
+                <legend>Sign In</legend>
+                <input type="submit" value="Sign In">
+            </fieldset>
+        </form>
+        <form action="" method="post"><!--Missing PHP Target-->
+            <!--Register-->
+            <fieldset class="topper"; align=left>
+                <label class="letter">New around here? Register!</label><br>
+                <label class="letter">Your favourite Nickname:</label>
+                <input id="newUsername"; type="text"; required><br>
+                <label class="letter">Your email is the key:</label>
+                <input id="newEmail"; type="text"; required><br>
+                <label class="letter">Password. It must be secret:</label>
+                <input id="newPassword"; type="text"; required>
+                <legend>Register</legend>
+                <input type="submit" value="Register">
+            </fieldset>
+        </form>
+    </body>
+</html>
