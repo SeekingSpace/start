@@ -3,45 +3,18 @@
     <head>
         <meta charset="utf-8">
         <title>Try the engine!</title>
-        <script type="text/javascript">
-            import * from "object.js";
-        </script>
+        <script type="text/javascript" src="Physic.js"></script>
+        <script type="text/javascript" src="SpaceObject.js"></script>
     </head>
     <body>
         <script type="text/javascript">
-            /*var svg=document.getElementsByTagName('svg')[0]
-            svg.setAttribute("width",50)
-            var circle=document.getElementById('circle1');
-            circle.setAttribute("cx",50);
-            circle.setAttribute("cy",50);
-            circle.setAttribute("r",40);
-            circle.style.fill="#503042";
-            document.getElementsByTagName("svg")[0].appendChild(circle);
-            var circle2=svgdocument.createElementNS("circle");
-            circle2.setAttribute("id","circle2")
-            circle2.setAttribute("cx",5);
-            circle2.setAttribute("cy",5);
-            circle2.setAttribute("r",10);
-            circle2.style.fill="red";
-            document.getElementsByTagName("svg")[0].appendChild(circle2);*/
-
-            var svgdiv = document.getElementById('svg1');
-			for (var k = 1; k < 3; ++k)
-			{
-				var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-				svg.setAttribute('width',100);
-				svg.setAttribute('height',100);
-				console.log(svg);
-				var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-				c.setAttribute('cx',50);
-				c.setAttribute('cy',50);
-				c.setAttribute('r',40);
-				c.setAttribute('stroke','green');
-				c.setAttribute('stroke-width',4);
-				c.setAttribute('fill','yellow');
-				svg.appendChild(c);
-				document.getElementsByTagName("body")[0].appendChild(svg);
-			}
+			var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+			svg.setAttribute('width',100);
+			svg.setAttribute('height',100);
+            document.getElementsByTagName("body")[0].appendChild(svg);
+            var obj=SpaceObject(10,10,10,10,10);
+            obj.setDisplay;
+            runPhysic();
         </script>
     </body>
 </html>
