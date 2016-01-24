@@ -1,4 +1,7 @@
 Work to be done:
-1.- Change classes into copies of an original object.
-2.- Start physics dev.
+1.- Create a working vector calculator (Physic).
+2.- Continue physics dev.
 3.- Implementation of further svg ideas.
+    -Atmo use.
+    -Collision creation.
+4.- Object identification.

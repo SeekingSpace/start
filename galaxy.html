@@ -12,9 +12,18 @@
 			svg.setAttribute('width',100);
 			svg.setAttribute('height',100);
             document.getElementsByTagName("body")[0].appendChild(svg);
-            var obj=new SpaceObject(10,10,10);
-            obj.setDisplay();
-            runPhysic();
+            //Initialization
+            var objects=[];
+            for (var i = 0; i < 3; i++) {
+                objects.push(new SpaceObject(100*i,100,100));
+                objects[objects.length-1].setDisplay();
+            }
+
+            //Physics go here
+            var gameTime=setInterval(function(){runPhysic(objects);}, 20);
+
+            //Events go here
+
         </script>
     </body>
 </html>
