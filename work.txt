@@ -1,7 +1,7 @@
 Work to be done:
-1.- Create a working vector calculator (Physic).
-2.- Continue physics dev.
+1.- Polish calculator.
+2.- Debug physics dev.
 3.- Implementation of further svg ideas.
     -Atmo use.
-    -Collision creation.
 4.- Object identification.
+5.- Collision creation.

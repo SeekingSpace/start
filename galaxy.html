@@ -2,25 +2,30 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Try the engine!</title>
-        <script type="text/javascript" src="Physic.js"></script>
+        <title>Try the engine! 0.2</title>
         <script type="text/javascript" src="SpaceObject.js"></script>
+        <script type="text/javascript" src="Physic.js"></script>
     </head>
     <body>
         <script type="text/javascript">
 			var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-			svg.setAttribute('width',100);
-			svg.setAttribute('height',100);
+			svg.setAttribute('width',1000);
+			svg.setAttribute('height',1000);
             document.getElementsByTagName("body")[0].appendChild(svg);
             //Initialization
             var objects=[];
-            for (var i = 0; i < 3; i++) {
-                objects.push(new SpaceObject(100*i,100,100));
-                objects[objects.length-1].setDisplay();
+            objects.push(new SpaceObject(300,100,100));
+            objects[0].setDisplay();
+            console.log(objects[0]);
+            objects.push(new SpaceObject(100,100,100));
+            objects[1].setDisplay();
+
+            function physicApplier(){
+                objects=runPhysic(objects);
             }
 
             //Physics go here
-            var gameTime=setInterval(function(){runPhysic(objects);}, 20);
+            var gameTime=setInterval(physicApplier, 2000);
 
             //Events go here
 

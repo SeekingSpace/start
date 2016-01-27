@@ -1,5 +1,5 @@
 //class SpaceObject {
-//var mass=0,x=0,y=0,velocity=0,direction=0/*degrees*/;
+//var mass=0,x=0,y=0,velocity=0,angle=0/*degrees*/;
 //var volume=0,radiusValue=0;
 function setMass(mass){
     this.mass=mass;
@@ -14,10 +14,6 @@ function setCenterCoordinates(x,y){
     this.x=x;
     this.y=y;
 }
-function setVector(direction,velocity){
-    this.direction=direction;
-    this.velocity=velocity;
-}
 function setDisplay(){
     var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     c.setAttribute('cx',this.x);
@@ -26,19 +22,18 @@ function setDisplay(){
     c.setAttribute('stroke','green');
     c.setAttribute('stroke-width',this.mass/100);
     c.setAttribute('fill','yellow');
-    var col=document.getElementsByTagName("svg")[0]
+    var col=document.getElementsByTagName("svg")[0];
     col.appendChild(c);
 }
 function SpaceObject(x,y,mass){
     this.setMass=setMass;
     this.setXCenter=setXCenter;
     this.setYCenter=setYCenter;
-    this.setVector=setVector;
     this.setCenterCoordinates=setCenterCoordinates;
     this.setDisplay=setDisplay;
 
     this.velocity=0;
-    this.direction=0;
+    this.angle=0;
     this.mass=mass;
     this.x=x;
     this.y=y;
