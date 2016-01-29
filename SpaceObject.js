@@ -24,6 +24,7 @@ function setDisplay(){
     c.setAttribute('fill','yellow');
     var col=document.getElementsByTagName("svg")[0];
     col.appendChild(c);
+    this.svg=c;
 }
 function SpaceObject(x,y,mass){
     this.setMass=setMass;
@@ -37,4 +38,5 @@ function SpaceObject(x,y,mass){
     this.mass=mass;
     this.x=x;
     this.y=y;
+    this.svg;
 }
