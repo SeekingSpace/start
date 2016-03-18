@@ -10,6 +10,7 @@ function gravityForce(objects){
     var forceX,forceY,forceZ,totalForce;//force components
     var x,y,z;//vector coords
     for(var i = 0; i < objects.length; i++) {//EACH SPACEOBJECT
+        physicsAffeccted=objects[i].isPhysicsAffected;
         forceX =objects[i].velocityX*objects[i].mass;
         forceY =objects[i].velocityY*objects[i].mass;
         forceZ =objects[i].velocityZ*objects[i].mass;
@@ -24,9 +25,9 @@ function gravityForce(objects){
             //console.log(xyzdistance);
             totalForce =objects[i].mass*objects[j].mass/xyzdistance;
             //console.log(totalForce);
-            forceX     =totalForce*x/xyzdistance+forceX;
-            forceY     =totalForce*y/xyzdistance+forceY;
-            forceZ     =totalForce*z/xyzdistance+forceZ;
+            forceX     =physicsAffeccted*totalForce*x/xyzdistance+forceX;
+            forceY     =physicsAffeccted*totalForce*y/xyzdistance+forceY;
+            forceZ     =physicsAffeccted*totalForce*z/xyzdistance+forceZ;
         }
         objects[i].velocityX =forceX/objects[i].mass;
         objects[i].velocityY =forceY/objects[i].mass;

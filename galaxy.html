@@ -14,28 +14,47 @@
             document.getElementsByTagName("body")[0].appendChild(svg);
             //Initialization
             var objects=[];
-            objects.push(new SpaceObject(320,100,0,50));
-            objects[0].velocityX=15;
-            objects[0].velocityY=1;
+            var deliverTime={};
+            deliverTime.fps=33;
+            deliverTime.time=1;
+            deliverTime.clock=1000/deliverTime.fps;
+
+
+            objects.push(new SpaceObject(320,100,0,60));
+            objects[0].velocityX=25;
+            objects[0].velocityY=-10;
             objects[0].velocityZ=0;
+            objects[0].isPhysicsAffected=1;
+            objects[0].BGColor="green";
             console.log(objects[0]);
-            objects.push(new SpaceObject(300,400,0,500));
+            objects.push(new SpaceObject(300,400,-30,580));
             objects[1].velocityX=0;
             objects[1].velocityY=0;
             objects[1].velocityZ=0;
+            objects[1].isPhysicsAffected=0;
+            objects[1].BGColor="yellow";
             console.log(objects[1]);
-            objects.push(new SpaceObject(320,100,0,50));
-            objects[2].velocityX=-15;
-            objects[2].velocityY=10;
-            objects[2].velocityZ=4;
+            objects.push(new SpaceObject(300,600,0,50));
+            objects[2].velocityX=20;
+            objects[2].velocityY=0;
+            objects[2].velocityZ=0;
+            objects[2].isPhysicsAffected=1;
+            objects[2].BGColor="blue";
             console.log(objects[2]);
+            objects.push(new SpaceObject(0,0,300,60));
+            objects[3].velocityX=0;
+            objects[3].velocityY=0;
+            objects[3].velocityZ=0;
+            objects[3].isPhysicsAffected=1;
+            objects[3].BGColor="red";
+            console.log(objects[3]);
 
             function physicApplier(){
                 runPhysic(objects);
             }
 
             //Physics go here
-            var gameTime=setInterval(physicApplier, 30);
+            var gameTimer=setInterval(physicApplier, deliverTime.clock);
 
             //Events go here
 
