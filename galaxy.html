@@ -1,76 +1,74 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="shortcut icon" href="favicon.ico">
         <meta charset="utf-8">
         <title>The engine! 0.3.6</title>
         <script type="text/javascript" src="Events.js"></script>
         <script type="text/javascript" src="SpaceObject.js"></script>
         <script type="text/javascript" src="Physic.js"></script>
     </head>
-    <body style="margin:0;" onresize="resizeParameters()">
+    <body style="margin:0;">
         <script type="text/javascript">
             //Initialization
             var objects=[];
             var gameLaws={};
 
             gameLaws.gravityConstant=1;
-            gameLaws.fps            =30;
+            gameLaws.fps            =1;
             gameLaws.clock          =1000/gameLaws.fps;
             gameLaws.svg            =document.createElementNS('http://www.w3.org/2000/svg', 'svg');
             gameLaws.HTMLbody       =document.getElementsByTagName("body")[0];
-            gameLaws.scale          ="0 0 5600 3400"
-            gameLaws.background     =document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            gameLaws.view           ="-1000 -2300 56000 34000";
 
-            //SVG
-            svg=gameLaws.svg;
-            background=gameLaws.background;
-            HTMLbody=gameLaws.HTMLbody;
+            //SVG and BG
+            svg                     =gameLaws.svg;
+            background              =gameLaws.background;
+            HTMLbody                =gameLaws.HTMLbody;
+
 			svg.setAttribute('width',"100%");
             svg.setAttribute('height',"100%");
-            background.setAttribute('x','-1000');
-            background.setAttribute('y','-1000');
-            background.setAttribute('width','100000');
-            background.setAttribute('height','100000');
-            background.setAttribute('fill','#000000');
-			svg.appendChild(background);
+            svg.setAttribute('viewBox',gameLaws.view);
+            HTMLbody.style.background="black";
             HTMLbody.appendChild(svg);
-            svg.setAttribute('viewBox',gameLaws.scale);
+            window.addEventListener("keypress",newKeyPress);
+            window.addEventListener("click",newClick);
 
             //OBJECTS
 
-            objects.push(new SpaceObject(320,100,0,70));
-            objects[0].velocityX=30;
-            objects[0].velocityY=15;
+            objects.push(new SpaceObject(10000,11000,0,102));
+            objects[0].velocityX=40;
+            objects[0].velocityY=0;
             objects[0].velocityZ=0;
             objects[0].isPhysicsAffected=1;
-            objects[0].BGColor="green";
+            objects[0].BGColor="grey";
             console.log(objects[0]);
-            objects.push(new SpaceObject(300,400,0,580));
+            objects.push(new SpaceObject(31000,4000,0,500));
             objects[1].velocityX=0;
             objects[1].velocityY=0;
             objects[1].velocityZ=0;
-            objects[1].isPhysicsAffected=0;
+            objects[1].isPhysicsAffected=1;
             objects[1].BGColor="yellow";
             console.log(objects[1]);
-            objects.push(new SpaceObject(1000,1200,0, 580));
+            objects.push(new SpaceObject(10000,12000,0,2500));
             objects[2].velocityX=0;
-            objects[2].velocityY=0;
+            objects[2].velocityY=-8;
             objects[2].velocityZ=0;
-            objects[2].isPhysicsAffected=0;
+            objects[2].volume=500;
+            objects[2].isPhysicsAffected=1;
             objects[2].BGColor="purple";
             console.log(objects[2]);
-            /*objects.push(new SpaceObject(0,0,0,200));
-            objects[3].velocityX=0;
+            objects.push(new SpaceObject(0,0,0,500));
+            objects[3].velocityX=-3;
             objects[3].velocityY=0;
             objects[3].velocityZ=0;
             objects[3].isPhysicsAffected=1;
             objects[3].BGColor="red";
-            console.log(objects[3]);*/
-
-
+            console.log(objects[3]);
 
             //Physics go here
-            var gameTimer=setInterval(runPhysic, gameLaws.clock);
+            gameLaws.gameTimer=setInterval(runPhysic, gameLaws.clock);
+            gameLaws.isPaused=0;
 
         </script>
     </body>

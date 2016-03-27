@@ -42,7 +42,23 @@ function gravityForce(){
 }
 
 function collision(){
-    
+    for(var i = 0; i < objects.length; i++) {//EACH SPACEOBJECT
+        for (var j = 0; j < objects.length; j++) {//EACH TARGET
+            x =objects[j].x-objects[i].x;
+            y =objects[j].y-objects[i].y;
+            z =objects[j].z-objects[i].z;
+            xyzdistance=Math.abs(distance(x,y,z));
+            if((xyzdistance<(objects[i].volume+objects[j].volume)) && (xyzdistance!=0)){
+                console.log("Collision");
+                objects[i].image.remove();
+                objects.splice(i,1);
+                console.log(objects);
+                objects[j-1].image.remove();
+                objects.splice(j-1,1);
+                console.log(objects);
+            }
+        }
+    }
 }
 
 function runPhysic(){
