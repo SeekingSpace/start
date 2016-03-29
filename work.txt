@@ -1,7 +1,8 @@
 Work to be done:
-1.- Polish calculator.
-2.- Debug physics dev.
 3.- Implementation of further svg ideas.
     -Atmo use.
-4.- Object identification.
-5.- Collision creation.
+    -Brightness.
+6.- Implementation of images into the SVG.
+7.- More physics.
+    -Rotation.
+    -Magnetic forces.
