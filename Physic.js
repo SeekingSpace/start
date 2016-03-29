@@ -16,46 +16,45 @@ function gravityForce(){
         forceY =objects[i].velocityY*objects[i].mass;
         forceZ =objects[i].velocityZ*objects[i].mass;
         for (var j = 0; j < objects.length; j++) {//EACH TARGET
-            totalForce=0;
-            x =objects[j].x-objects[i].x;
-            y =objects[j].y-objects[i].y;
-            z =objects[j].z-objects[i].z;
+            totalForce                =0;
+            x                         =objects[j].x-objects[i].x;
+            y                         =objects[j].y-objects[i].y;
+            z                         =objects[j].z-objects[i].z;
 
-            xyzdistance=distance(x,y,z);
+            xyzdistance               =distance(x,y,z);
             if(xyzdistance==0){xyzdistance=1};
-            totalForce =objects[i].mass*objects[j].mass/xyzdistance;
+            totalForce                =objects[i].mass*objects[j].mass/xyzdistance;
 
-            forceX     =gravityConstant*physicsAffeccted*totalForce*x/xyzdistance+forceX;
-            forceY     =gravityConstant*physicsAffeccted*totalForce*y/xyzdistance+forceY;
-            forceZ     =gravityConstant*physicsAffeccted*totalForce*z/xyzdistance+forceZ;
+            forceX                    =gravityConstant*physicsAffeccted*totalForce*x/xyzdistance+forceX;
+            forceY                    =gravityConstant*physicsAffeccted*totalForce*y/xyzdistance+forceY;
+            forceZ                    =gravityConstant*physicsAffeccted*totalForce*z/xyzdistance+forceZ;
         }
-        objects[i].velocityX =forceX/objects[i].mass;
-        objects[i].velocityY =forceY/objects[i].mass;
-        objects[i].velocityZ =forceZ/objects[i].mass;
+        objects[i].velocityX          =forceX/objects[i].mass;
+        objects[i].velocityY          =forceY/objects[i].mass;
+        objects[i].velocityZ          =forceZ/objects[i].mass;
     }
     for (var n = 0; n < objects.length; n++) {
-        objects[n].x+=objects[n].velocityX;
-        objects[n].y+=objects[n].velocityY;
-        objects[n].z+=objects[n].velocityZ;
+        objects[n].x                  +=objects[n].velocityX;
+        objects[n].y                  +=objects[n].velocityY;
+        objects[n].z                  +=objects[n].velocityZ;
         objects[n].updateDisplay();
     }
 }
 
 function collision(){
-    for(var i = 0; i < objects.length; i++) {//EACH SPACEOBJECT
+    for (var i = 0; i < objects.length; i++) {//EACH SPACEOBJECT
         for (var j = 0; j < objects.length; j++) {//EACH TARGET
-            x =objects[j].x-objects[i].x;
-            y =objects[j].y-objects[i].y;
-            z =objects[j].z-objects[i].z;
-            xyzdistance=Math.abs(distance(x,y,z));
-            if((xyzdistance<(objects[i].volume+objects[j].volume)) && (xyzdistance!=0)){
+            x               =objects[j].x-objects[i].x;
+            y               =objects[j].y-objects[i].y;
+            z               =objects[j].z-objects[i].z;
+            xyzdistance     =Math.abs(distance(x,y,z));
+            if ((xyzdistance<(objects[i].volume+objects[j].volume)) && (xyzdistance!=0)){
                 console.log("Collision");
+                if (camera.focus==i || camera.focus==j){camera.mode=0;}//AVOID CRASH ON cameraUpdater
                 objects[i].image.remove();
                 objects.splice(i,1);
-                console.log(objects);
                 objects[j-1].image.remove();
                 objects.splice(j-1,1);
-                console.log(objects);
             }
         }
     }

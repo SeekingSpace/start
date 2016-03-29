@@ -3,64 +3,68 @@
     <head>
         <link rel="shortcut icon" href="favicon.ico">
         <meta charset="utf-8">
-        <title>The engine! 0.3.6</title>
+        <title>The engine! 0.4.0</title>
         <script type="text/javascript" src="Events.js"></script>
         <script type="text/javascript" src="SpaceObject.js"></script>
         <script type="text/javascript" src="Physic.js"></script>
+        <script type="text/javascript" src="Camera.js"></script>
     </head>
-    <body style="margin:0;">
+    <body>
         <script type="text/javascript">
             //Initialization
-            var objects=[];
-            var gameLaws={};
+            objects             =[];
+            gameLaws            ={};
+            camera              =new Camera();
 
             gameLaws.gravityConstant=1;
-            gameLaws.fps            =1;
+            gameLaws.fps            =33;
             gameLaws.clock          =1000/gameLaws.fps;
             gameLaws.svg            =document.createElementNS('http://www.w3.org/2000/svg', 'svg');
             gameLaws.HTMLbody       =document.getElementsByTagName("body")[0];
-            gameLaws.view           ="-1000 -2300 56000 34000";
 
             //SVG and BG
             svg                     =gameLaws.svg;
-            background              =gameLaws.background;
             HTMLbody                =gameLaws.HTMLbody;
 
 			svg.setAttribute('width',"100%");
             svg.setAttribute('height',"100%");
-            svg.setAttribute('viewBox',gameLaws.view);
             HTMLbody.style.background="black";
+            HTMLbody.style.margin="0";
             HTMLbody.appendChild(svg);
-            window.addEventListener("keypress",newKeyPress);
+            window.addEventListener("keydown",newKeyDown);
             window.addEventListener("click",newClick);
+            window.onmousewheel=null;
+            window.onresize=newWindowSize;
 
             //OBJECTS
 
-            objects.push(new SpaceObject(10000,11000,0,102));
-            objects[0].velocityX=40;
+            new SpaceObject(10000,11000,0,100);
+            objects[0].velocityX=70.71;
             objects[0].velocityY=0;
             objects[0].velocityZ=0;
             objects[0].isPhysicsAffected=1;
             objects[0].BGColor="grey";
             console.log(objects[0]);
-            objects.push(new SpaceObject(31000,4000,0,500));
+            new SpaceObject(10000,10000,0,5000);
             objects[1].velocityX=0;
             objects[1].velocityY=0;
             objects[1].velocityZ=0;
-            objects[1].isPhysicsAffected=1;
+            objects[1].isPhysicsAffected=0;
+            objects[1].volume=500;
             objects[1].BGColor="yellow";
+            objects[1].name="The Sun";
             console.log(objects[1]);
-            objects.push(new SpaceObject(10000,12000,0,2500));
-            objects[2].velocityX=0;
-            objects[2].velocityY=-8;
+            new SpaceObject(10000,12000,0,100);
+            objects[2].velocityX=70.71;
+            objects[2].velocityY=0;
             objects[2].velocityZ=0;
-            objects[2].volume=500;
+            objects[2].volume=60;
             objects[2].isPhysicsAffected=1;
             objects[2].BGColor="purple";
             console.log(objects[2]);
-            objects.push(new SpaceObject(0,0,0,500));
-            objects[3].velocityX=-3;
-            objects[3].velocityY=0;
+            new SpaceObject(10000,12200,0,10);
+            objects[3].velocityX=80;
+            objects[3].velocityY=30;
             objects[3].velocityZ=0;
             objects[3].isPhysicsAffected=1;
             objects[3].BGColor="red";
