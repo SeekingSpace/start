@@ -6,15 +6,19 @@ function distance(x,y,z){
     return Math.sqrt(Math.pow(x,2)+Math.pow(y,2)+Math.pow(z,2));
 }
 
+function orbitalVelocity(object,radius){
+    return Math.sqrt(object.mass);
+}
+
 function gravityForce(){
     var forceX,forceY,forceZ,totalForce;//force components
     var x,y,z;//vector coords
     for(var i = 0; i < objects.length; i++) {//EACH SPACEOBJECT
-        physicsAffeccted=objects[i].isPhysicsAffected;
-        gravityConstant=gameLaws.gravityConstant;
-        forceX =objects[i].velocityX*objects[i].mass;
-        forceY =objects[i].velocityY*objects[i].mass;
-        forceZ =objects[i].velocityZ*objects[i].mass;
+        physicsAffeccted              =objects[i].isPhysicsAffected;
+        gravityConstant               =gameLaws.gravityConstant;
+        forceX                        =objects[i].velocityX*objects[i].mass;
+        forceY                        =objects[i].velocityY*objects[i].mass;
+        forceZ                        =objects[i].velocityZ*objects[i].mass;
         for (var j = 0; j < objects.length; j++) {//EACH TARGET
             totalForce                =0;
             x                         =objects[j].x-objects[i].x;
@@ -60,11 +64,15 @@ function collision(){
     }
 }
 
-function runPhysic(){
+
+
+function runPhysics(){
     gravityForce();
     collision();
-
-
     //console.log(newObjects);
     //console.log("done!");
+}
+
+function Physics() {
+    this.runPhysics=runPhysics;
 }

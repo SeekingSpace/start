@@ -8,32 +8,32 @@
         <script type="text/javascript" src="SpaceObject.js"></script>
         <script type="text/javascript" src="Physic.js"></script>
         <script type="text/javascript" src="Camera.js"></script>
+        <script type="text/javascript" src="MenuBar.js"></script>
+        <script type="text/javascript" src="GameLaws.js"></script>
     </head>
     <body>
         <script type="text/javascript">
             //Initialization
-            objects             =[];
-            gameLaws            ={};
-            camera              =new Camera();
-
-            gameLaws.gravityConstant=1;
-            gameLaws.fps            =33;
-            gameLaws.clock          =1000/gameLaws.fps;
-            gameLaws.svg            =document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            gameLaws.HTMLbody       =document.getElementsByTagName("body")[0];
+            objects                   =[];
+            gameLaws                  =new GameLaws();
+            physics                   =new Physics();
+            camera                    =new Camera();
+            menuBar                   =new MenuBar();
 
             //SVG and BG
-            svg                     =gameLaws.svg;
-            HTMLbody                =gameLaws.HTMLbody;
-
-			svg.setAttribute('width',"100%");
-            svg.setAttribute('height',"100%");
+            svg                       =gameLaws.svg;
+            HTMLbody                  =gameLaws.HTMLbody;
             HTMLbody.style.background="black";
             HTMLbody.style.margin="0";
+			svg.setAttribute('width',"100%");
+            svg.setAttribute('height',"100%");
+            svg.style.position="absolute";
+            svg.style.left="0px";
+            svg.style.top="0px";
+            svg.style.zIndex="0";
             HTMLbody.appendChild(svg);
             window.addEventListener("keydown",newKeyDown);
             window.addEventListener("click",newClick);
-            window.onmousewheel=null;
             window.onresize=newWindowSize;
 
             //OBJECTS
@@ -44,35 +44,41 @@
             objects[0].velocityZ=0;
             objects[0].isPhysicsAffected=1;
             objects[0].BGColor="grey";
+            objects[0].name="The Moon";
             console.log(objects[0]);
             new SpaceObject(10000,10000,0,5000);
             objects[1].velocityX=0;
             objects[1].velocityY=0;
             objects[1].velocityZ=0;
-            objects[1].isPhysicsAffected=0;
+            objects[1].isPhysicsAffected=1;
             objects[1].volume=500;
             objects[1].BGColor="yellow";
             objects[1].name="The Sun";
             console.log(objects[1]);
             new SpaceObject(10000,12000,0,100);
-            objects[2].velocityX=70.71;
+            objects[2].velocityX=orbitalVelocity(objects[1],100);
             objects[2].velocityY=0;
             objects[2].velocityZ=0;
             objects[2].volume=60;
             objects[2].isPhysicsAffected=1;
             objects[2].BGColor="purple";
             console.log(objects[2]);
-            new SpaceObject(10000,12200,0,10);
-            objects[3].velocityX=80;
-            objects[3].velocityY=30;
+            /*new SpaceObject(10000,12000,0,15);
+            objects[3].velocityX=orbitalVelocity(objects[1],100);
+            objects[3].velocityY=0;
             objects[3].velocityZ=0;
             objects[3].isPhysicsAffected=1;
             objects[3].BGColor="red";
-            console.log(objects[3]);
+            console.log(objects[3]);*/
 
-            //Physics go here
-            gameLaws.gameTimer=setInterval(runPhysic, gameLaws.clock);
-            gameLaws.isPaused=0;
+            //Main Loop for repetitions
+            function runCycle(){
+                if (gameLaws.isPaused!=1)physics.runPhysics();
+                camera.cameraUpdater();
+            }
+
+            gameLaws.runCycle=runCycle;
+            gameLaws.gameTimer=setInterval(gameLaws.runCycle, gameLaws.clock);
 
         </script>
     </body>

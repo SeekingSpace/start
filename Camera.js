@@ -22,7 +22,7 @@ function cameraUpdater(){
 function changeMode(argument){
     //argument evaluation
     if(argument=="+"){
-        if (this.mode==0){if(objects.length!=0)this.mode++;}
+        if (this.mode==0){this.mode++;this.focus=0;}
         else if (this.mode==1){
             if (this.focus==objects.length-1){this.mode=0;
                                               this.focus=0;}
@@ -56,6 +56,4 @@ function Camera(){
     this.changeMode         =changeMode;
     this.cameraUpdater      =cameraUpdater;
     this.doCameraResize     =doCameraResize;
-    //frame
-    this.focusInterval      =setInterval(this.cameraUpdater,gameLaws.clock);
 }

@@ -9,22 +9,20 @@ function newKeyDown(event){
 
         case 80://P
             if (gameLaws.isPaused==0){
-                clearInterval(gameLaws.gameTimer);
                 gameLaws.isPaused=1;
                 console.log("Paused");
             }else if(gameLaws.isPaused==1){
-                gameLaws.gameTimer=setInterval(runPhysic, gameLaws.clock);
                 gameLaws.isPaused=0;
                 console.log("Unpaused");
             }
             break;
 
-        case 107://add
+        case 33://add
             camera.scale              /=2;
             camera.edgex              +=camera.cx/2;
             camera.edgey              +=camera.cy/2;
             break;
-        case 109://substract
+        case 34://substract
             camera.scale              *=2;
             camera.edgex              -=camera.cx;
             camera.edgey              -=camera.cy;
@@ -56,6 +54,10 @@ function newKeyDown(event){
             break;
         case 86://v
             camera.changeMode("-");
+            break;
+
+        case 77://M
+            menuBar.toggleMenuBarVisibility();
             break;
 
         default:
