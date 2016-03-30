@@ -21,7 +21,8 @@ function cameraUpdater(){
 
 function changeMode(argument){
     //argument evaluation
-    if(argument=="+"){
+    if (objects.length==0){this.mode=0;console.log("No more objects.");
+    }else if(argument=="+"){
         if (this.mode==0){this.mode++;this.focus=0;}
         else if (this.mode==1){
             if (this.focus==objects.length-1){this.mode=0;
@@ -42,7 +43,7 @@ function changeMode(argument){
 function Camera(){
     //properties
     this.modes              =["Free","Focus"];
-    this.mode               =0;
+    this.mode               =1;
     this.focus              =0;
     this.scale              =1;
     this.viewWidth          =window.innerWidth;

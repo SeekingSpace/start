@@ -6,7 +6,7 @@ function distance(x,y,z){
     return Math.sqrt(Math.pow(x,2)+Math.pow(y,2)+Math.pow(z,2));
 }
 
-function orbitalVelocity(object,radius){
+function orbitalVelocity(object){
     return Math.sqrt(object.mass);
 }
 
@@ -52,13 +52,17 @@ function collision(){
             y               =objects[j].y-objects[i].y;
             z               =objects[j].z-objects[i].z;
             xyzdistance     =Math.abs(distance(x,y,z));
-            if ((xyzdistance<(objects[i].volume+objects[j].volume)) && (xyzdistance!=0)){
+            if ((xyzdistance<(objects[i].radius+objects[j].radius)) && (xyzdistance!=0)){
                 console.log("Collision");
+                var min,max;
                 if (camera.focus==i || camera.focus==j){camera.mode=0;}//AVOID CRASH ON cameraUpdater
-                objects[i].image.remove();
-                objects.splice(i,1);
-                objects[j-1].image.remove();
-                objects.splice(j-1,1);
+                if (i>j){max=i;min=j;}//SWAP IF I GREATER THAN J
+                else {max=j;min=i;}//ELSE STAYS THE SAME
+
+                objects[min].image.remove();
+                objects.splice(min,1);
+                objects[max-1].image.remove();
+                objects.splice(max-1,1);
             }
         }
     }
@@ -69,7 +73,6 @@ function collision(){
 function runPhysics(){
     gravityForce();
     collision();
-    //console.log(newObjects);
     //console.log("done!");
 }
 
