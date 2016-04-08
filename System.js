@@ -24,6 +24,17 @@ function getPlanetname(){
     return names[randInt(0,names.length-1)];
 }
 
+function getHexNumber(){
+    var hex=randInt(0,15);
+    if (hex==10) hex="A";
+    else if (hex==11) hex="B";
+    else if (hex==12) hex="C";
+    else if (hex==13) hex="D";
+    else if (hex==14) hex="E";
+    else if (hex==15) hex="F";
+    return hex;
+}
+
 function generateCelestialBody(x,y,z,mass){
     var newCelestialBody=new SpaceObject(x,y,z,mass);
     //OLD
@@ -43,6 +54,8 @@ function generateStar(x,y,z,mass){
     newStar.radius      =randInt(Math.sqrt(newStar.mass),newStar.mass,2);
     newStar.temperature =(newStar.mass/newStar.radius)*randInt(1,10);
     newStar.isAtmospherePresent=1;
+    newStar.BGColor     ="#FFF"+getHexNumber()+getHexNumber()+getHexNumber();
+    console.log(newStar.BGColor);
     //NEW
     newStar.atmosphere  =randInt(newStar.mass/randInt(2,5));
     newStar.brightness  =randInt(1,10);
@@ -65,8 +78,9 @@ function System(x,y,z,planets){
     this.star=generateStar(x,y,z,randInt(1000,10000));
     this.planets=[];
     for (var i = 0; i < planets; i++) {
-        var planet=generatePlanet(x,randInt(this.star.radius*10,this.star.radius*100),z,this.star.mass/randInt(10,100));
-        planet.velocityX=orbitalVelocity(this.star);
-        this.planets.push();
+        var planet=generatePlanet(x,10000,z,this.star.mass/randInt(5,50));
+        planet.y=randInt(this.star.radius+planet.radius+1,(this.star.radius+planet.radius)*planets);
+        orbit(planet,this.star);
+        this.planets.push(planet);
     }
 }

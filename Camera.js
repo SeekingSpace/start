@@ -13,8 +13,8 @@ function cameraUpdater(){
     if (camera.mode==0) {}
     else if (camera.mode==1) {
         objectToFocus       =objects[camera.focus];
-        camera.edgex=objectToFocus.x-camera.cx;
-        camera.edgey=objectToFocus.y-camera.cy;
+        camera.edgex        =objectToFocus.x-camera.cx;
+        camera.edgey        =objectToFocus.y-camera.cy;
     }
     this.setViewBox();
 }
@@ -45,7 +45,7 @@ function Camera(){
     this.modes              =["Free","Focus"];
     this.mode               =1;
     this.focus              =0;
-    this.scale              =1;
+    this.scale              =4;
     this.viewWidth          =window.innerWidth;
     this.viewHeight         =window.innerHeight;
     this.edgex              =0;

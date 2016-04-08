@@ -6,8 +6,10 @@ function distance(x,y,z){
     return Math.sqrt(Math.pow(x,2)+Math.pow(y,2)+Math.pow(z,2));
 }
 
-function orbitalVelocity(object){
-    return Math.sqrt(object.mass);
+function orbit(objectOrbiting, objectToOrbit){
+    objectOrbiting.velocityX=Math.sqrt(objectToOrbit.mass)+objectToOrbit.velocityX;
+    //objectOrbiting.velocityY=Math.sqrt(objectOrbiting.mass)+objectToOrbit.velocityY;
+    //objectOrbiting.velocityZ=Math.sqrt(objectOrbiting.mass)+objectToOrbit.velocityZ;
 }
 
 function gravityForce(){
@@ -51,11 +53,12 @@ function collision(){
             x               =objects[j].x-objects[i].x;
             y               =objects[j].y-objects[i].y;
             z               =objects[j].z-objects[i].z;
-            xyzdistance     =Math.abs(distance(x,y,z));
+            xyzdistance     =distance(x,y,z);
+
             if ((xyzdistance<(objects[i].radius+objects[j].radius)) && (xyzdistance!=0)){
                 console.log("Collision");
                 var min,max;
-                if (camera.focus==i || camera.focus==j){camera.mode=0;}//AVOID CRASH ON cameraUpdater
+                if (camera.focus==i || camera.focus==j){camera.mode=0;camera.focus=0}//AVOID CRASH ON cameraUpdater
                 if (i>j){max=i;min=j;}//SWAP IF I GREATER THAN J
                 else {max=j;min=i;}//ELSE STAYS THE SAME
 
